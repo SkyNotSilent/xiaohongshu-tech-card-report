@@ -1,0 +1,23 @@
+{
+  "skill_name": "xiaohongshu-tech-card-report",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我做一个 GitHub 本周热榜的小红书图文笔记。",
+      "expected_output": "Creates the full GitHub Trending weekly Top10 Xiaohongshu package: current source records, 1 cover + 10 detail image prompts/images, 3:4 validation, clean zip containing only valid PNGs, title options, caption, and hashtags.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "今天的 AI 日报，做成小红书图文，不要视频口播，8 张左右卡片。",
+      "expected_output": "Creates a daily AI report carousel, verifies current primary sources, selects 5-8 items, and outputs concise card-by-card copy plus Xiaohongshu caption.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我给你几个 AI 工具链接，帮我整理成小红书卡片，别写成公众号文章。",
+      "expected_output": "Uses provided links first, verifies facts where freshness is implied, and outputs scan-friendly social cards instead of long article prose.",
+      "files": []
+    }
+  ]
+}
