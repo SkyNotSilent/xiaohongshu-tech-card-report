@@ -15,6 +15,3 @@ generated_images/
 *.log
 *.sqlite
 *.db
-
-# Local experimental variants
-references/github-weekly-purple-theme-xhs.md
