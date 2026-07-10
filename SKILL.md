@@ -5,14 +5,15 @@ description: Produce Xiaohongshu carousel card reports and publish packages for 
 
 # Xiaohongshu Tech Card Report
 
-Use this skill to turn current GitHub or AI news into a Xiaohongshu-ready package: verified sources, card copy, visual prompts, generated carousel images when requested, and a publish caption.
+Use this skill to turn current GitHub or AI news into a Xiaohongshu-ready package: verified sources, card copy, visual prompts, generated carousel images when requested, and a publish caption. Every completed package must also return directly copyable titles, publish caption, and hashtags in the final response.
 
 Default behavior for "帮我做一个 GitHub 本周热榜的小红书图文笔记": produce a full GitHub weekly hot package from GitHub Trending weekly Top10, including 1 cover + 10 detail images, a clean 3:4-only zip, title options, caption, hashtags, and source files.
 
 ## Modes
 
 - **GitHub weekly hot XHS image mode**: For GitHub 本周热榜 / GitHub 一周热榜 / GitHub Trending weekly / GitHub 热榜小红书图文笔记. Use GitHub Trending weekly Top10 as the default ranking, then generate the full Xiaohongshu package.
-- **Purple theme GitHub weekly mode**: For 紫色 GitHub 热榜 / 紫色主题 GitHub 热榜 / 紫色风格 GitHub 热榜 / 紫色小红书卡片 / purple GitHub weekly hot cards. Use the verified GitHub Trending weekly Top10, but render the cards with the deterministic purple frosted-glass visual system. Read `references/github-weekly-purple-theme-xhs.md` before executing this branch.
+- **Purple data-accurate GitHub weekly mode**: For a standard 紫色 GitHub 热榜 / 紫色主题 GitHub 热榜 / 紫色风格 GitHub 热榜 / 紫色小红书卡片 request where ranks, repository names, stars, forks, and weekly deltas must stay exact. Use the verified GitHub Trending weekly Top10 and the deterministic purple frosted-glass visual system. Read `references/github-weekly-purple-theme-xhs.md` before executing this branch.
+- **Creative image-generation theme mode**: For `换一个主题`, `另一个主题`, `换个风格`, `参考这个风格`, `按这个参考图做`, `自由生图`, or `先生成一张首页图`. Use the built-in image generation tool for the final image. Read `references/github-weekly-creative-imagegen-xhs.md` before executing this branch. This branch has priority over the purple data-accurate branch whenever both could apply.
 - **GitHub weekly copy-only mode**: If the user asks for 文案 / 先别生图, produce sources, cards, visual prompt JSON, and caption first.
 - **Daily AI report**: For 每日 AI 日报 / 今日 AI / AI 快讯. Build a curated current-source card report.
 - **Provided source mode**: If the user gives links, screenshots, markdown, or notes, use them first and verify freshness for "today", "this week", "latest", rankings, stars, launches, pricing, or product status.
@@ -33,7 +34,7 @@ For a full GitHub weekly hot Xiaohongshu package:
 
 Read `references/github-weekly-hot-xhs.md` before executing this mode. It contains the locked visual system, output structure, prompt JSON schema, and QA rules.
 
-If the user asks for a purple theme, purple style, or purple GitHub weekly hot Xiaohongshu card set, use the purple theme branch instead of the default visual system. That branch intentionally uses deterministic HTML/Canvas/SVG rendering for text-heavy cards so ranks, stars, forks, and weekly deltas do not drift during image generation.
+Use the purple data-accurate branch only for the standard purple theme request. It intentionally uses deterministic HTML/Canvas/SVG rendering for text-heavy cards so ranks, stars, forks, and weekly deltas do not drift. When the user requests a different theme or provides a new visual reference, use the creative image-generation branch instead. Never silently replace that branch with HTML, CSS, SVG, Canvas, or a code-rendered card.
 
 ## Workspace Layout
 
@@ -92,9 +93,18 @@ For Xiaohongshu caption limits, read `references/xhs-publishing-limits.md`. Defa
 - caption body: 1000 characters or fewer;
 - hashtags: 6 to 10 relevant tags.
 
+For every GitHub weekly hot package, the final tag set must include these four fixed tags:
+
+- `#GitHub`
+- `#开源项目`
+- `#GitHub热榜`
+- `#科技资讯`
+
+Choose the remaining 2 to 6 tags from the verified weekly topics, such as `#AI工具`, `#AI编程`, `#AIAgent`, `#开发者工具`, or `#效率工具`. Do not add unrelated traffic tags.
+
 ## Visual Rules For The Locked GitHub Template
 
-Use image generation for the actual card images. Code may only validate dimensions, create contact sheets, write manifests, and zip files.
+The default and creative image-generation branches use the built-in image generation tool for actual card images. Code may only validate dimensions, create contact sheets, write manifests, and zip files. The purple data-accurate branch is the sole exception and follows its dedicated reference.
 
 Locked GitHub weekly hot visual invariants:
 
@@ -124,6 +134,23 @@ For full GitHub weekly hot mode, save and return:
 - `clean-3x4-only.zip` containing only valid 3:4 PNGs
 
 If the user asks for "先给我文案", return `cards.md` and `xhs_caption.md` first, but still keep source notes durable.
+
+## Final Delivery Format
+
+For every completed image package, include the following directly in the final response, even when the same content is saved in `02_cards/xhs_caption.md`:
+
+```text
+标题：
+<one recommended title, followed by optional alternatives>
+
+发布文案：
+<ready-to-post caption>
+
+标签：
+#GitHub #开源项目 #GitHub热榜 #科技资讯 <2-6 verified-topic tags>
+```
+
+Keep the caption externally publishable. Do not include production notes, ranking-method explanations, or instructions to the user in the publish copy.
 
 ## Quality Check
 

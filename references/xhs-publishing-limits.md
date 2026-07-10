@@ -14,7 +14,8 @@ These are operational defaults, not a guaranteed official API contract. Public p
 - Put the core hook in the title, not in a long subtitle.
 - Keep the caption useful and skimmable: one short intro, 3 to 5 value bullets, one comment prompt.
 - Use relevant tags only. Avoid unrelated traffic tags.
-- Prefer tags such as `#GitHub`, `#开源项目`, `#程序员`, `#AI工具`, `#开发者工具`, `#效率工具`, `#技术分享`, `#小红书图文`.
+- For GitHub weekly hot packages, always include `#GitHub`, `#开源项目`, `#GitHub热榜`, and `#科技资讯`.
+- Add 2 to 6 topic-specific tags such as `#AI工具`, `#AI编程`, `#AIAgent`, `#程序员`, `#开发者工具`, or `#效率工具`.
 
 ## References To Recheck
 
