@@ -110,6 +110,8 @@ Locked GitHub weekly hot visual invariants:
 
 - all images are strict 3:4 portrait PNGs, typically `1086x1448` or equivalent;
 - cover top-right badge is `Top10 榜单`, not a page number;
+- cover subtitle is exactly `Top10 · 本周新增星标精选 · YYYY.MM.DD`, using the current Asia/Shanghai generation date, for example `Top10 · 本周新增星标精选 · 2026.07.10`;
+- never use a date range such as `2026.07.06-07.10` on a cover;
 - cover has no `github.com` link bar;
 - cover bottom icon is a GitHub cat/Octocat-style mascot mark;
 - detail top-left header is `GitHub 本周爆火热榜`;

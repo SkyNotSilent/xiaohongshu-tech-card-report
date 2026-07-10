@@ -33,7 +33,8 @@ This branch takes precedence over the purple data-accurate branch, even when the
 - top-left: `GitHub 本周爆火热榜`;
 - top-right: `Top10 榜单`;
 - primary title: `GitHub 本周 TOP 10 开源项目`;
-- a public-facing subtitle;
+- subtitle: `Top10 · 本周新增星标精选 · YYYY.MM.DD`, using the current Asia/Shanghai generation date, for example `Top10 · 本周新增星标精选 · 2026.07.10`;
+- do not use a date range on the cover;
 - the ranked Top10 list, in verified order, with repository short name and weekly growth;
 - no GitHub URL bar and no page number in the cover header.
 

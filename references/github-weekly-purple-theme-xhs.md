@@ -115,9 +115,8 @@ Required cover content:
 - top-left: `GitHub 本周爆火热榜`;
 - top-right: `Top10 榜单`;
 - main title: `GitHub 本周 TOP 10 开源项目`;
-- public-facing subtitle, for example:
-  - `本周 GitHub 热榜更新：10 个高增长开源项目一次看懂。`
-  - `从 AI Agent 到开发者工具，本周值得关注的开源项目都在这里。`
+- subtitle: `Top10 · 本周新增星标精选 · YYYY.MM.DD`, using the current Asia/Shanghai generation date, for example `Top10 · 本周新增星标精选 · 2026.07.10`;
+- do not use a date range on the cover;
 - one short trend summary card;
 - ranked list with 10 rows, strict #1 to #10 order;
 - each row should show rank, short repo name, Chinese label, language, and `+数字`.
